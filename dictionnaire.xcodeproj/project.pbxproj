@@ -7,21 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B72356A1FB3641C00A565F1 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7235691FB3641C00A565F1 /* AdminViewController.swift */; };
 		9B936F3F1FAB48B900F3108D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B936F3E1FAB48B900F3108D /* AppDelegate.swift */; };
-		9B936F411FAB48B900F3108D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B936F401FAB48B900F3108D /* ViewController.swift */; };
+		9B936F411FAB48B900F3108D /* DictionnaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B936F401FAB48B900F3108D /* DictionnaireViewController.swift */; };
 		9B936F441FAB48B900F3108D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B936F421FAB48B900F3108D /* Main.storyboard */; };
 		9B936F461FAB48B900F3108D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B936F451FAB48B900F3108D /* Assets.xcassets */; };
 		9B936F491FAB48B900F3108D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B936F471FAB48B900F3108D /* LaunchScreen.storyboard */; };
+		9BEB9F741FB344AE007ACB75 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEB9F731FB344AE007ACB75 /* UserDefaultsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B7235691FB3641C00A565F1 /* AdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
 		9B936F3B1FAB48B900F3108D /* dictionnaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dictionnaire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B936F3E1FAB48B900F3108D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9B936F401FAB48B900F3108D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9B936F401FAB48B900F3108D /* DictionnaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionnaireViewController.swift; sourceTree = "<group>"; };
 		9B936F431FAB48B900F3108D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9B936F451FAB48B900F3108D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B936F481FAB48B900F3108D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B936F4A1FAB48B900F3108D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BEB9F731FB344AE007ACB75 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +58,10 @@
 		9B936F3D1FAB48B900F3108D /* dictionnaire */ = {
 			isa = PBXGroup;
 			children = (
+				9B7235691FB3641C00A565F1 /* AdminViewController.swift */,
+				9BEB9F731FB344AE007ACB75 /* UserDefaultsManager.swift */,
 				9B936F3E1FAB48B900F3108D /* AppDelegate.swift */,
-				9B936F401FAB48B900F3108D /* ViewController.swift */,
+				9B936F401FAB48B900F3108D /* DictionnaireViewController.swift */,
 				9B936F421FAB48B900F3108D /* Main.storyboard */,
 				9B936F451FAB48B900F3108D /* Assets.xcassets */,
 				9B936F471FAB48B900F3108D /* LaunchScreen.storyboard */,
@@ -136,8 +142,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B936F411FAB48B900F3108D /* ViewController.swift in Sources */,
+				9B72356A1FB3641C00A565F1 /* AdminViewController.swift in Sources */,
+				9B936F411FAB48B900F3108D /* DictionnaireViewController.swift in Sources */,
 				9B936F3F1FAB48B900F3108D /* AppDelegate.swift in Sources */,
+				9BEB9F741FB344AE007ACB75 /* UserDefaultsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +305,7 @@
 				9B936F4F1FAB48B900F3108D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
