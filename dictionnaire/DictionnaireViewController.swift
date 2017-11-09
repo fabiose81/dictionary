@@ -11,28 +11,24 @@ import UIKit
 class DictionnaireViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var textField1: UITextField!
-    @IBOutlet weak var textField2: UITextField!
     
     @IBOutlet weak var segControl: UISegmentedControl!
     
     @IBOutlet weak var tableViewHistoriqueRecherche: UITableView!
     
-    var dictionaryFrancaisAnglais = [String: String]()
-    var dictionaryAnglaisFrancais = [String: String]()
-    var historiqueRecherche = [String]()
+    var dictionaryFrancaisAnglais = [String: [String: String]]()
+    var dictionaryAnglaisFrancais = [String: [String: String]]()
+    var resultatRecherche = [String]()
     
     var userDefaultsManager = UserDefaultsManager()
     
     @IBAction func actionTextField1(_ sender: UITextField) {
-        traduire(_mot: String(describing: sender.text!).trimmingCharacters(in: .whitespaces))
+        traduire(_mot: String(describing: sender.text!).trimmingCharacters(in: .whitespaces).uppercased())
     }
     
     @IBAction func actionSegControl(_ sender: UISegmentedControl) {
         
         let seg = sender.selectedSegmentIndex
-        
-        let mot = textField1.text!.trimmingCharacters(in: .whitespaces)
-        
         
         if seg == 0
         {
@@ -42,27 +38,23 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
         {
             textField1.placeholder = "Enter the english word"
         }
-        
-        if mot != ""
-        {
-            traduire(_mot: mot)
-        }
     }
     
     private func traduire(_mot: String)
     {
+        resultatRecherche = [String]()
+        
         let seg = segControl.selectedSegmentIndex
         
         if seg == 0
         {
             for mot in dictionaryFrancaisAnglais{
                 if mot.key == _mot{
-                    textField2.text = mot.value
-                    historiqueRecherche.append("\(mot.key) = \(mot.value)")
+                    for value in mot.value {
+                        resultatRecherche.append("\(value.key) = \(value.value)")
+                    }
                     tableViewHistoriqueRecherche.reloadData()
                     break
-                }else{
-                    textField2.text = ""
                 }
             }
         }
@@ -70,12 +62,11 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
         {
             for mot in dictionaryAnglaisFrancais{
                 if mot.key == _mot{
-                    textField2.text = mot.value
-                    historiqueRecherche.append("\(mot.key) = \(mot.value)")
+                    for value in mot.value {
+                        resultatRecherche.append("\(value.key) = \(value.value)")
+                    }
                     tableViewHistoriqueRecherche.reloadData()
                     break
-                }else{
-                    textField2.text = ""
                 }
             }
         }
@@ -100,18 +91,22 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
     {
         if userDefaultsManager.doesKeyExist(theKey: "dictionaryFrancaisAnglais") && userDefaultsManager.doesKeyExist(theKey: "dictionaryAnglaisFrancais")
         {
-            dictionaryFrancaisAnglais =  userDefaultsManager.getValue(theKey: "dictionaryFrancaisAnglais") as! [String: String]
-            dictionaryAnglaisFrancais =  userDefaultsManager.getValue(theKey: "dictionaryAnglaisFrancais") as! [String: String]
+            dictionaryFrancaisAnglais =  userDefaultsManager.getValue(theKey: "dictionaryFrancaisAnglais") as! [String: [String: String]]
+            dictionaryAnglaisFrancais =  userDefaultsManager.getValue(theKey: "dictionaryAnglaisFrancais") as! [String: [String: String]]
+            
+            print(dictionaryFrancaisAnglais)
+            print(dictionaryAnglaisFrancais)
+            
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historiqueRecherche.count
+        return resultatRecherche.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = UITableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:nil)
-        cell.textLabel!.text = historiqueRecherche[indexPath.row]
+        cell.textLabel!.text = resultatRecherche[indexPath.row]
         
         return cell
     }

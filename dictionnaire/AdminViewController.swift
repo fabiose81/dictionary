@@ -16,17 +16,17 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
    @IBOutlet weak var tableViewMotAjoute: UITableView!
     
    var motAjoute = [String]()
-   var dictionaryFrancaisAnglais = [String: String]()
-   var dictionaryAnglaisFrancais = [String: String]()
+   var dictionaryFrancaisAnglais = [String: [String: String]]()
+   var dictionaryAnglaisFrancais = [String: [String: String]]()
     
    var userDefaultsManager = UserDefaultsManager()
     
     override func viewDidLoad() {
         if userDefaultsManager.doesKeyExist(theKey: "dictionaryFrancaisAnglais") && userDefaultsManager.doesKeyExist(theKey: "dictionaryAnglaisFrancais")
         {
-            dictionaryFrancaisAnglais =  userDefaultsManager.getValue(theKey: "dictionaryFrancaisAnglais") as! [String: String]
-            dictionaryAnglaisFrancais =  userDefaultsManager.getValue(theKey: "dictionaryAnglaisFrancais") as! [String: String]
-            
+            dictionaryFrancaisAnglais =  userDefaultsManager.getValue(theKey: "dictionaryFrancaisAnglais") as! [String: [String: String]]
+            dictionaryAnglaisFrancais =  userDefaultsManager.getValue(theKey: "dictionaryAnglaisFrancais") as! [String: [String: String]]
+                       
             for dict in dictionaryFrancaisAnglais
             {
                 motAjoute.append("\(dict.key) = \(dict.value)")
@@ -44,15 +44,43 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if tf1 != "" && tf2 != ""
         {
-          dictionaryFrancaisAnglais.updateValue(tf2, forKey: tf1)
-          dictionaryAnglaisFrancais.updateValue(tf1, forKey: tf2)
+           let keyFrancais = tf1.uppercased().first
+           let keyAnglais = tf2.uppercased().first
             
-          userDefaultsManager.setKey(theValue: dictionaryFrancaisAnglais as AnyObject, key: "dictionaryFrancaisAnglais")
-          userDefaultsManager.setKey(theValue: dictionaryAnglaisFrancais as AnyObject, key: "dictionaryAnglaisFrancais")
+            var arrayFrancais = [String: String]()
+            var arrayAnglais = [String: String]()
             
-          motAjoute.append("\(tf1) = \(tf2)")
+            for dictionary in dictionaryFrancaisAnglais {
+                if dictionary.key == String(describing: keyFrancais) {
+                    arrayFrancais = dictionary.value
+                    break
+                }
+            }
             
-          tableViewMotAjoute.reloadData()
+            for dictionary in dictionaryAnglaisFrancais {
+                if dictionary.key == String(describing: keyAnglais) {
+                    arrayAnglais = dictionary.value
+                    break
+                }
+            }
+            
+           arrayFrancais.updateValue(tf2, forKey:  String(describing: tf1))
+           arrayAnglais.updateValue(tf1, forKey:  String(describing: tf2))
+         
+            
+           dictionaryFrancaisAnglais.updateValue(arrayFrancais, forKey: String(describing: keyFrancais!))
+           dictionaryAnglaisFrancais.updateValue(arrayAnglais, forKey: String(describing: keyAnglais!))
+            
+           userDefaultsManager.setKey(theValue: dictionaryFrancaisAnglais as AnyObject, key: "dictionaryFrancaisAnglais")
+           userDefaultsManager.setKey(theValue: dictionaryAnglaisFrancais as AnyObject, key: "dictionaryAnglaisFrancais")
+            
+           motAjoute.append("\(tf1) = \(tf2)")
+            
+           tableViewMotAjoute.reloadData()
+            
+           textField1.text = ""
+           textField2.text = ""
+            
         }
         else
         {
