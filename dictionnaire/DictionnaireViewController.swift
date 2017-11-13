@@ -18,6 +18,8 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
     
     var dictionaryFrancaisAnglais = [String: [String: String]]()
     var dictionaryAnglaisFrancais = [String: [String: String]]()
+    var motRecherche = [String: [String]]()
+    
     var resultatRecherche = [String]()
     
     var userDefaultsManager = UserDefaultsManager()
@@ -79,13 +81,27 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
         segControl.setTitle("Français", forSegmentAt: 0)
         segControl.setTitle("Anglais", forSegmentAt: 1)
         
+        motRecherche.updateValue(["AA"], forKey: "A")
+        motRecherche.updateValue(["BB","BBB"], forKey: "B")
+        motRecherche.updateValue(["CC","CCC","CCCC"], forKey: "C" )
+        
+        
+        
+       /* motRecherche.sorted(by:
+            {
+                $0.key < $1.key
+        })
+        */
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
        loadDictionnaire()
     }
+    
+   
     
     func loadDictionnaire()
     {
@@ -94,22 +110,36 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
             dictionaryFrancaisAnglais =  userDefaultsManager.getValue(theKey: "dictionaryFrancaisAnglais") as! [String: [String: String]]
             dictionaryAnglaisFrancais =  userDefaultsManager.getValue(theKey: "dictionaryAnglaisFrancais") as! [String: [String: String]]
             
-            print(dictionaryFrancaisAnglais)
-            print(dictionaryAnglaisFrancais)
-            
+            dictionaryFrancaisAnglais.updateValue(["chat":"cat","chien":"dog"], forKey: "C")
         }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resultatRecherche.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = UITableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:nil)
-        cell.textLabel!.text = resultatRecherche[indexPath.row]
+      
+        //var key = dictionaryFrancaisAnglais[Array(dictionaryFrancaisAnglais.keys)[indexPath.section]]!
+        print(dictionaryFrancaisAnglais[Array(dictionaryFrancaisAnglais.keys)[indexPath.section]]!)
+        print(dictionaryFrancaisAnglais[Array(dictionaryFrancaisAnglais.keys)[indexPath.section]]!["chat"] as Any)
         
+        
+        //print(dictionaryFrancaisAnglais[Array(dictionaryFrancaisAnglais.keys)[indexPath.section]]!["chien"]!)
+        
+        // cell.textLabel!.text = dictionaryFrancaisAnglais[Array(dictionaryFrancaisAnglais.keys)[indexPath.section]]?[indexPath.row]
+        //cell.textLabel!.text = motRecherche[Array(motRecherche.keys)[indexPath.section]]?[indexPath.row]
         return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (dictionaryFrancaisAnglais[Array(dictionaryFrancaisAnglais.keys)[section]]?.count)!
+    }
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return dictionaryFrancaisAnglais.keys.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return Array(dictionaryFrancaisAnglais.keys)[section]
+    }
 }
 
