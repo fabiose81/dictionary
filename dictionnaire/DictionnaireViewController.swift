@@ -113,7 +113,7 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
             let motsFrancaisTemp =  userDefaultsManager.getValue(theKey: "motsFrancais") as! [String: String]
             let motsAnglaisTemp =  userDefaultsManager.getValue(theKey: "motsAnglais") as! [String: String]
             
-            
+            print(motsFrancaisTemp)
            //dictionaryFrancaisAnglais = dictionaryFrancaisAnglais.sorted{ $0.key < $1.key }
      
             for element in motsFrancaisTemp{

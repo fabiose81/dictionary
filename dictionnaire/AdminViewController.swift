@@ -20,8 +20,7 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
    var userDefaultsManager = UserDefaultsManager()
     
-    override func viewDidLoad() {
-       
+   override func viewDidLoad() {
         
         if userDefaultsManager.doesKeyExist(theKey: "motsFrancais") && userDefaultsManager.doesKeyExist(theKey: "motsAnglais")
         {
