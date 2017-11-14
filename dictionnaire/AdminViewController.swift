@@ -15,18 +15,18 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
    @IBOutlet weak var tableViewMotAjoute: UITableView!
     
-   var dictionaryFrancaisAnglais = [String: String]()
-   var dictionaryAnglaisFrancais = [String: String]()
+   var motsFrancais = [String: String]()
+   var motsAnglais = [String: String]()
     
    var userDefaultsManager = UserDefaultsManager()
     
     override func viewDidLoad() {
        
         
-        if userDefaultsManager.doesKeyExist(theKey: "dictionaryFrancaisAnglais") && userDefaultsManager.doesKeyExist(theKey: "dictionaryAnglaisFrancais")
+        if userDefaultsManager.doesKeyExist(theKey: "motsFrancais") && userDefaultsManager.doesKeyExist(theKey: "motsAnglais")
         {
-            dictionaryFrancaisAnglais =  userDefaultsManager.getValue(theKey: "dictionaryFrancaisAnglais") as! [String: String]
-            dictionaryAnglaisFrancais =  userDefaultsManager.getValue(theKey: "dictionaryAnglaisFrancais") as! [String: String]
+            motsFrancais =  userDefaultsManager.getValue(theKey: "motsFrancais") as! [String: String]
+            motsAnglais =  userDefaultsManager.getValue(theKey: "motsAnglais") as! [String: String]
         }
         
         super.viewDidLoad()
@@ -38,11 +38,13 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if tf1 != "" && tf2 != ""
         {
-           dictionaryFrancaisAnglais.updateValue(tf2, forKey: tf1)
-           dictionaryAnglaisFrancais.updateValue(tf1, forKey: tf2)
+           motsFrancais.updateValue(tf2, forKey: tf1)
+           motsAnglais.updateValue(tf1, forKey: tf2)
             
-           userDefaultsManager.setKey(theValue: dictionaryFrancaisAnglais as AnyObject, key: "dictionaryFrancaisAnglais")
-           userDefaultsManager.setKey(theValue: dictionaryAnglaisFrancais as AnyObject, key: "dictionaryAnglaisFrancais")
+           userDefaultsManager.setKey(theValue: motsFrancais as AnyObject, key: "motsFrancais")
+           userDefaultsManager.setKey(theValue: motsAnglais as AnyObject, key: "motsAnglais")
+            
+           userDefaultsManager.setKey(theValue: true as AnyObject, key: "misAJour")
         
            textFieldMotFrancais.text = ""
            textFieldMotAnglais.text = ""
@@ -65,15 +67,15 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dictionaryFrancaisAnglais.count
+        return motsFrancais.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = UITableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:nil)
         
-        let keyFrancais = Array(dictionaryFrancaisAnglais.keys)[indexPath.row]
+        let keyFrancais = Array(motsFrancais.keys)[indexPath.row]
         
-        cell.textLabel!.text = "\(keyFrancais) - \(String(describing: dictionaryFrancaisAnglais[keyFrancais]))"
+        cell.textLabel!.text = "\(keyFrancais) - \(String(describing: motsFrancais[keyFrancais]))"
         
         return cell
     }
@@ -85,14 +87,16 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete)
         {
-            let keyFrancais = Array(dictionaryFrancaisAnglais.keys)[indexPath.row]
-            let keyAnglais = dictionaryFrancaisAnglais[keyFrancais]
+            let keyFrancais = Array(motsFrancais.keys)[indexPath.row]
+            let keyAnglais = motsFrancais[keyFrancais]
             
-            dictionaryFrancaisAnglais.removeValue(forKey:keyFrancais)
-            dictionaryAnglaisFrancais.removeValue(forKey: keyAnglais!)
+            motsFrancais.removeValue(forKey:keyFrancais)
+            motsFrancais.removeValue(forKey: keyAnglais!)
             
-            userDefaultsManager.setKey(theValue: dictionaryFrancaisAnglais as AnyObject, key: "dictionaryFrancaisAnglais")
-            userDefaultsManager.setKey(theValue: dictionaryAnglaisFrancais as AnyObject, key: "dictionaryAnglaisFrancais")
+            userDefaultsManager.setKey(theValue: motsFrancais as AnyObject, key: "motsFrancais")
+            userDefaultsManager.setKey(theValue: motsFrancais as AnyObject, key: "motsFrancais")
+            
+            userDefaultsManager.setKey(theValue: true as AnyObject, key: "misAJour")
             
             tableViewMotAjoute.reloadData()
         }
