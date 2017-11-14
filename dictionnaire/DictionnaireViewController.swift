@@ -16,13 +16,12 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var tableViewHistoriqueRecherche: UITableView!
     
-    var dictionaryFrancaisAnglais = [String: [String: String]]()
-    var dictionaryAnglaisFrancais = [String: [String: String]]()
-    var motRecherche = [String: [String]]()
-    
-    var resultatRecherche = [String]()
+    var dictionaryFrancaisAnglais = [String: [String]]()
+    var dictionaryAnglaisFrancais = [String: [String]]()
     
     var userDefaultsManager = UserDefaultsManager()
+    
+    var segControlSelected = 0
     
     @IBAction func actionTextField1(_ sender: UITextField) {
         traduire(_mot: String(describing: sender.text!).trimmingCharacters(in: .whitespaces).uppercased())
@@ -30,9 +29,9 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func actionSegControl(_ sender: UISegmentedControl) {
         
-        let seg = sender.selectedSegmentIndex
+        segControlSelected = sender.selectedSegmentIndex
         
-        if seg == 0
+        if segControlSelected == 0
         {
             textField1.placeholder = "Composer le mot en français"
         }
@@ -40,13 +39,15 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
         {
             textField1.placeholder = "Enter the english word"
         }
+        
+        tableViewHistoriqueRecherche.reloadData()
     }
     
     private func traduire(_mot: String)
     {
-        resultatRecherche = [String]()
         
-        let seg = segControl.selectedSegmentIndex
+        
+       /* let seg = segControl.selectedSegmentIndex
         
         if seg == 0
         {
@@ -72,7 +73,7 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
                 }
             }
         }
-        textField1.text!.trimmingCharacters(in: .whitespaces)
+        textField1.text!.trimmingCharacters(in: .whitespaces)*/
     }
     
     override func viewDidLoad() {
@@ -80,19 +81,7 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
         
         segControl.setTitle("Français", forSegmentAt: 0)
         segControl.setTitle("Anglais", forSegmentAt: 1)
-        
-        motRecherche.updateValue(["AA"], forKey: "A")
-        motRecherche.updateValue(["BB","BBB"], forKey: "B")
-        motRecherche.updateValue(["CC","CCC","CCCC"], forKey: "C" )
-        
-        
-        
-       /* motRecherche.sorted(by:
-            {
-                $0.key < $1.key
-        })
-        */
-        
+
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -101,45 +90,87 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
        loadDictionnaire()
     }
     
-   
-    
     func loadDictionnaire()
     {
         if userDefaultsManager.doesKeyExist(theKey: "dictionaryFrancaisAnglais") && userDefaultsManager.doesKeyExist(theKey: "dictionaryAnglaisFrancais")
         {
-            dictionaryFrancaisAnglais =  userDefaultsManager.getValue(theKey: "dictionaryFrancaisAnglais") as! [String: [String: String]]
-            dictionaryAnglaisFrancais =  userDefaultsManager.getValue(theKey: "dictionaryAnglaisFrancais") as! [String: [String: String]]
+            let dictionaryFrancaisAnglaisTemp =  userDefaultsManager.getValue(theKey: "dictionaryFrancaisAnglais") as! [String: String]
+            let dictionaryAnglaisFrancaisTemp =  userDefaultsManager.getValue(theKey: "dictionaryAnglaisFrancais") as! [String: String]
             
-            dictionaryFrancaisAnglais.updateValue(["chat":"cat","chien":"dog"], forKey: "C")
+            
+           //dictionaryFrancaisAnglais = dictionaryFrancaisAnglais.sorted{ $0.key < $1.key }
+     
+            for element in dictionaryFrancaisAnglaisTemp{
+                if dictionaryFrancaisAnglais[String(describing: element.key.uppercased().first)] == nil
+                {
+                    dictionaryFrancaisAnglais.updateValue([element.key], forKey: String(describing: element.key.uppercased().first))
+                }else{
+                    
+                    var y = [String]()
+                    y=dictionaryFrancaisAnglais[String(describing: element.key.uppercased().first)]!
+                    y.append(element.key)
+                    
+                    dictionaryFrancaisAnglais.updateValue(y , forKey: String(describing: element.key.uppercased().first))
+                }
+            }
+            
+            for element in dictionaryAnglaisFrancaisTemp{
+                if dictionaryAnglaisFrancais[String(describing: element.key.uppercased().first)] == nil
+                {
+                    dictionaryAnglaisFrancais.updateValue([element.key], forKey: String(describing: element.key.uppercased().first))
+                }else{
+                    
+                    var y = [String]()
+                    y=dictionaryAnglaisFrancais[String(describing: element.key.uppercased().first)]!
+                    y.append(element.key)
+                    
+                    dictionaryAnglaisFrancais.updateValue(y , forKey: String(describing: element.key.uppercased().first))
+                }
+            }
         }
+     
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = UITableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:nil)
-      
-        //var key = dictionaryFrancaisAnglais[Array(dictionaryFrancaisAnglais.keys)[indexPath.section]]!
-        print(dictionaryFrancaisAnglais[Array(dictionaryFrancaisAnglais.keys)[indexPath.section]]!)
-        print(dictionaryFrancaisAnglais[Array(dictionaryFrancaisAnglais.keys)[indexPath.section]]!["chat"] as Any)
         
+        if segControlSelected == 0
+        {
+            let key = dictionaryFrancaisAnglais[Array(dictionaryFrancaisAnglais.keys)[indexPath.section]]!
+            cell.textLabel!.text = key[indexPath.row]
+        }else{
+           let  key = dictionaryAnglaisFrancais[Array(dictionaryAnglaisFrancais.keys)[indexPath.section]]!
+            cell.textLabel!.text = key[indexPath.row]
+        }
         
-        //print(dictionaryFrancaisAnglais[Array(dictionaryFrancaisAnglais.keys)[indexPath.section]]!["chien"]!)
-        
-        // cell.textLabel!.text = dictionaryFrancaisAnglais[Array(dictionaryFrancaisAnglais.keys)[indexPath.section]]?[indexPath.row]
-        //cell.textLabel!.text = motRecherche[Array(motRecherche.keys)[indexPath.section]]?[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (dictionaryFrancaisAnglais[Array(dictionaryFrancaisAnglais.keys)[section]]?.count)!
+        if segControlSelected == 0
+        {
+           return (dictionaryFrancaisAnglais[Array(dictionaryFrancaisAnglais.keys)[section]]?.count)!
+        }
+        
+       return (dictionaryAnglaisFrancais[Array(dictionaryAnglaisFrancais.keys)[section]]?.count)!
     }
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return dictionaryFrancaisAnglais.keys.count
+        if segControlSelected == 0
+        {
+            return dictionaryFrancaisAnglais.keys.count
+        }
+        return dictionaryAnglaisFrancais.keys.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return Array(dictionaryFrancaisAnglais.keys)[section]
+        if segControlSelected == 0
+        {
+            return Array(dictionaryFrancaisAnglais.keys)[section]
+        }
+        
+        return Array(dictionaryAnglaisFrancais.keys)[section]
     }
 }
 

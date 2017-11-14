@@ -118,8 +118,8 @@
                     <tabBarItem key="tabBarItem" title="Admin" id="kye-OD-ivu"/>
                     <connections>
                         <outlet property="tableViewMotAjoute" destination="jir-bC-1k3" id="hMQ-3e-GNi"/>
-                        <outlet property="textField1" destination="3uq-AO-W9K" id="Gvt-OJ-zPV"/>
-                        <outlet property="textField2" destination="6n1-X0-WA9" id="ZQs-nf-qaM"/>
+                        <outlet property="textFieldMotAnglais" destination="6n1-X0-WA9" id="ps8-WY-coS"/>
+                        <outlet property="textFieldMotFrancais" destination="3uq-AO-W9K" id="8B3-eK-10l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mXu-Ty-l7j" userLabel="First Responder" sceneMemberID="firstResponder"/>
