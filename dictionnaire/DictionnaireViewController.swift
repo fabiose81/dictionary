@@ -23,6 +23,9 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
     var dictionnaireFrancaisAnglais = [String: String]()
     var dictionnaireAnglaisFrancais = [String: String]()
     
+    var dictionnaireFrancaisAnglaisSorted = [(key: String, value: [String])]()
+    var dictionnaireAnglaisFrancaisSorted = [(key: String, value: [String])]()
+    
     var userDefaultsManager = UserDefaultsManager()
     
     var segControlSelected = 0
@@ -63,40 +66,40 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
         {
              dictionnaireFrancaisAnglais =  userDefaultsManager.getValue(theKey: "dictionnaireFrancaisAnglais") as! [String: String]
              dictionnaireAnglaisFrancais =  userDefaultsManager.getValue(theKey: "dictionnaireAnglaisFrancais") as! [String: String]
-            
-            let dictionnaireFrancaisAnglaisSorted = dictionnaireFrancaisAnglais.sorted(by: <)
-            let dictionnaireAnglaisFrancaisSorted = dictionnaireAnglaisFrancais.sorted(by: <)
-           
-            for element in dictionnaireFrancaisAnglaisSorted
+   
+            for element in dictionnaireFrancaisAnglais
             {
-                if motsFrancais[String(describing: element.key.uppercased().first)] == nil
+                if motsFrancais[String(element.key.uppercased().first!)] == nil
                 {
                     motsFrancais.updateValue([element.key], forKey: String(element.key.uppercased().first!))
                 }
                 else
                 {
                     var elementTemp = [String]()
-                    elementTemp = motsFrancais[String(describing: element.key.uppercased().first)]!
+                    elementTemp = motsFrancais[String(element.key.uppercased().first!)]!
                     elementTemp.append(element.key)
                     motsFrancais.updateValue(elementTemp , forKey: String(element.key.uppercased().first!))
                 }
             }
             
-            for element in dictionnaireAnglaisFrancaisSorted
+            for element in dictionnaireAnglaisFrancais
             {
-                if motsAnglais[String(describing: element.key.uppercased().first)] == nil
+                if motsAnglais[String(element.key.uppercased().first!)] == nil
                 {
-                    motsAnglais.updateValue([String(describing: element.key)], forKey: String(element.key.uppercased().first!))
+                    motsAnglais.updateValue([String(element.key)], forKey: String(element.key.uppercased().first!))
                 }
                 else
                 {
                     var elementTemp = [String]()
-                    elementTemp = motsAnglais[String(describing: element.key.uppercased().first)]!
+                    elementTemp = motsAnglais[String(element.key.uppercased().first!)]!
                     elementTemp.append(element.key)
                     
                     motsAnglais.updateValue(elementTemp , forKey: String(element.key.uppercased().first!))
                 }
             }
+            
+            dictionnaireFrancaisAnglaisSorted = motsFrancais.sorted{ $0.key < $1.key }
+            dictionnaireAnglaisFrancaisSorted = motsAnglais.sorted{ $0.key < $1.key }
         }
     }
     
@@ -105,13 +108,11 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
         
         if segControlSelected == 0
         {
-            let section = motsFrancais[Array(motsFrancais.keys)[indexPath.section]]!
-            cell.textLabel!.text = section[indexPath.row]
+            cell.textLabel!.text = dictionnaireFrancaisAnglaisSorted[indexPath.section].value[indexPath.row]
         }
         else
         {
-           let  section = motsAnglais[Array(motsAnglais.keys)[indexPath.section]]!
-            cell.textLabel!.text = section[indexPath.row]
+           cell.textLabel!.text = dictionnaireAnglaisFrancaisSorted[indexPath.section].value[indexPath.row]
         }
         
         return cell
@@ -120,41 +121,41 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if segControlSelected == 0
         {
-           return (motsFrancais[Array(motsFrancais.keys)[section]]?.count)!
+            return dictionnaireFrancaisAnglaisSorted[section].value.count
         }
         
-       return (motsAnglais[Array(motsAnglais.keys)[section]]?.count)!
+        return dictionnaireAnglaisFrancaisSorted[section].value.count
     }
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if segControlSelected == 0
         {
-            return motsFrancais.keys.count
+            return dictionnaireFrancaisAnglaisSorted.count
         }
         
-        return motsAnglais.keys.count
+        return dictionnaireAnglaisFrancaisSorted.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if segControlSelected == 0
         {
-            return Array(motsFrancais.keys)[section]
+            return dictionnaireFrancaisAnglaisSorted[section].key
         }
         
-        return Array(motsAnglais.keys)[section]
+        return dictionnaireAnglaisFrancaisSorted[section].key
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if segControlSelected == 0
         {
-            let section = motsFrancais[Array(motsFrancais.keys)[indexPath.section]]!
-            labelResultat.text = dictionnaireFrancaisAnglais[section[indexPath.row]] as Any as? String
+            let key = dictionnaireFrancaisAnglaisSorted[indexPath.section].value[indexPath.row]
+            labelResultat.text = dictionnaireFrancaisAnglais[key]
         }
         else
         {
-            let section = motsAnglais[Array(motsAnglais.keys)[indexPath.section]]!
-            labelResultat.text = dictionnaireAnglaisFrancais[section[indexPath.row]] as Any as? String
+            let key = dictionnaireAnglaisFrancaisSorted[indexPath.section].value[indexPath.row]
+            labelResultat.text = dictionnaireAnglaisFrancais[key]
         }
     }
 }

@@ -18,6 +18,8 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
    var dictionnaireFrancaisAnglais = [String: String]()
    var dictionnaireAnglaisFrancais = [String: String]()
     
+   var dictionnaireFrancaisAnglaisSorted = [(key: String, value: String)]()
+    
    var userDefaultsManager = UserDefaultsManager()
     
    override func viewDidLoad() {
@@ -26,6 +28,8 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
         {
             dictionnaireFrancaisAnglais =  userDefaultsManager.getValue(theKey: "dictionnaireFrancaisAnglais") as! [String: String]
             dictionnaireAnglaisFrancais =  userDefaultsManager.getValue(theKey: "dictionnaireAnglaisFrancais") as! [String: String]
+            
+            dictionnaireFrancaisAnglaisSorted = dictionnaireFrancaisAnglais.sorted(by: <)
         }
         
         super.viewDidLoad()
@@ -43,8 +47,7 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
            dictionnaireFrancaisAnglais.updateValue(tf2, forKey: tf1)
            dictionnaireAnglaisFrancais.updateValue(tf1, forKey: tf2)
             
-          let dictionnaireFrancaisAnglaisSorted = dictionnaireFrancaisAnglais.sorted(by: <)
-          print(dictionnaireFrancaisAnglaisSorted)
+           dictionnaireFrancaisAnglaisSorted = dictionnaireFrancaisAnglais.sorted(by: <)
             
            userDefaultsManager.setKey(theValue: dictionnaireFrancaisAnglais as AnyObject, key: "dictionnaireFrancaisAnglais")
            userDefaultsManager.setKey(theValue: dictionnaireAnglaisFrancais as AnyObject, key: "dictionnaireAnglaisFrancais")
@@ -61,26 +64,24 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
         else
         {
             let alertController = UIAlertController(title: "Reverse", message: "SVP, remplir les champs", preferredStyle: .alert)
-
             let defaultAction = UIAlertAction(title: "Fermer", style: .default, handler: nil)
-            
             alertController.addAction(defaultAction)
-        
             present(alertController, animated: true, completion: nil)
         }
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dictionnaireFrancaisAnglais.count
+        return dictionnaireFrancaisAnglaisSorted.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = UITableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:nil)
         
-        let keyFrancais = Array(dictionnaireFrancaisAnglais.keys)[indexPath.row]
+        //let keyFrancais = Array(dictionnaireFrancaisAnglais.keys)[indexPath.row]
         
-        cell.textLabel!.text = "\(keyFrancais) - \(dictionnaireFrancaisAnglais[keyFrancais]!)"
+        //cell.textLabel!.text = "\(keyFrancais) - \(dictionnaireFrancaisAnglais[keyFrancais]!)"
+        
+        cell.textLabel!.text = "\(dictionnaireFrancaisAnglaisSorted[indexPath.row].key) = \(dictionnaireFrancaisAnglaisSorted[indexPath.row].value)"
         
         return cell
     }
