@@ -8,24 +8,24 @@
 
 import UIKit
 
-class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
    @IBOutlet weak var textFieldMotFrancais: UITextField!
    @IBOutlet weak var textFieldMotAnglais: UITextField!
     
    @IBOutlet weak var tableViewMotAjoute: UITableView!
     
-   var motsFrancais = [String: String]()
-   var motsAnglais = [String: String]()
+   var dictionnaireFrancaisAnglais = [String: String]()
+   var dictionnaireAnglaisFrancais = [String: String]()
     
    var userDefaultsManager = UserDefaultsManager()
     
    override func viewDidLoad() {
         
-        if userDefaultsManager.doesKeyExist(theKey: "motsFrancais") && userDefaultsManager.doesKeyExist(theKey: "motsAnglais")
+        if userDefaultsManager.doesKeyExist(theKey: "dictionnaireFrancaisAnglais") && userDefaultsManager.doesKeyExist(theKey: "dictionnaireAnglaisFrancais")
         {
-            motsFrancais =  userDefaultsManager.getValue(theKey: "motsFrancais") as! [String: String]
-            motsAnglais =  userDefaultsManager.getValue(theKey: "motsAnglais") as! [String: String]
+            dictionnaireFrancaisAnglais =  userDefaultsManager.getValue(theKey: "dictionnaireFrancaisAnglais") as! [String: String]
+            dictionnaireAnglaisFrancais =  userDefaultsManager.getValue(theKey: "dictionnaireAnglaisFrancais") as! [String: String]
         }
         
         super.viewDidLoad()
@@ -34,14 +34,20 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBAction func actionAjouterMot(_ sender: UIButton) {
         let tf1 =  String(describing: textFieldMotFrancais.text!).trimmingCharacters(in: .whitespaces)
         let tf2 =  String(describing: textFieldMotAnglais.text!).trimmingCharacters(in: .whitespaces)
+       
+        textFieldMotFrancais.resignFirstResponder()
+        textFieldMotAnglais.resignFirstResponder()
         
         if tf1 != "" && tf2 != ""
         {
-           motsFrancais.updateValue(tf2, forKey: tf1)
-           motsAnglais.updateValue(tf1, forKey: tf2)
+           dictionnaireFrancaisAnglais.updateValue(tf2, forKey: tf1)
+           dictionnaireAnglaisFrancais.updateValue(tf1, forKey: tf2)
             
-           userDefaultsManager.setKey(theValue: motsFrancais as AnyObject, key: "motsFrancais")
-           userDefaultsManager.setKey(theValue: motsAnglais as AnyObject, key: "motsAnglais")
+          let dictionnaireFrancaisAnglaisSorted = dictionnaireFrancaisAnglais.sorted(by: <)
+          print(dictionnaireFrancaisAnglaisSorted)
+            
+           userDefaultsManager.setKey(theValue: dictionnaireFrancaisAnglais as AnyObject, key: "dictionnaireFrancaisAnglais")
+           userDefaultsManager.setKey(theValue: dictionnaireAnglaisFrancais as AnyObject, key: "dictionnaireAnglaisFrancais")
             
            userDefaultsManager.setKey(theValue: true as AnyObject, key: "misAJour")
         
@@ -66,15 +72,15 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return motsFrancais.count
+        return dictionnaireFrancaisAnglais.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = UITableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:nil)
         
-        let keyFrancais = Array(motsFrancais.keys)[indexPath.row]
+        let keyFrancais = Array(dictionnaireFrancaisAnglais.keys)[indexPath.row]
         
-        cell.textLabel!.text = "\(keyFrancais) - \(String(describing: motsFrancais[keyFrancais]))"
+        cell.textLabel!.text = "\(keyFrancais) - \(dictionnaireFrancaisAnglais[keyFrancais]!)"
         
         return cell
     }
@@ -86,18 +92,23 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete)
         {
-            let keyFrancais = Array(motsFrancais.keys)[indexPath.row]
-            let keyAnglais = motsFrancais[keyFrancais]
+            let keyFrancais = Array(dictionnaireFrancaisAnglais.keys)[indexPath.row]
+            let keyAnglais = dictionnaireFrancaisAnglais[keyFrancais]
             
-            motsFrancais.removeValue(forKey:keyFrancais)
-            motsFrancais.removeValue(forKey: keyAnglais!)
+            dictionnaireFrancaisAnglais.removeValue(forKey:keyFrancais)
+            dictionnaireAnglaisFrancais.removeValue(forKey: keyAnglais!)
             
-            userDefaultsManager.setKey(theValue: motsFrancais as AnyObject, key: "motsFrancais")
-            userDefaultsManager.setKey(theValue: motsFrancais as AnyObject, key: "motsFrancais")
+            userDefaultsManager.setKey(theValue: dictionnaireFrancaisAnglais as AnyObject, key: "dictionnaireFrancaisAnglais")
+            userDefaultsManager.setKey(theValue: dictionnaireAnglaisFrancais as AnyObject, key: "dictionnaireAnglaisFrancais")
             
             userDefaultsManager.setKey(theValue: true as AnyObject, key: "misAJour")
             
             tableViewMotAjoute.reloadData()
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textFieldMotFrancais.resignFirstResponder()
+        return true
     }
 }
