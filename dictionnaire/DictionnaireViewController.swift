@@ -10,7 +10,8 @@ import UIKit
 
 class DictionnaireViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-
+    @IBOutlet weak var viewTop: UIView!
+    
     @IBOutlet weak var labelResultat: UILabel!
     
     @IBOutlet weak var segControl: UISegmentedControl!
@@ -48,6 +49,10 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func viewDidLoad() {
+        
+        viewTop.layer.borderColor = UIColor(rgb: 0x366295).cgColor
+        viewTop.layer.borderWidth = 5
+        
         segControl.setTitle("Français", forSegmentAt: 0)
         segControl.setTitle("Anglais", forSegmentAt: 1)
 

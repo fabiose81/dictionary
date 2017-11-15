@@ -10,6 +10,8 @@ import UIKit
 
 class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
+   @IBOutlet weak var viewTop: UIView!
+    
    @IBOutlet weak var textFieldMotFrancais: UITextField!
    @IBOutlet weak var textFieldMotAnglais: UITextField!
     
@@ -23,7 +25,10 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
    var userDefaultsManager = UserDefaultsManager()
     
    override func viewDidLoad() {
-        
+    
+        viewTop.layer.borderColor = UIColor(rgb: 0x366295).cgColor
+        viewTop.layer.borderWidth = 5
+    
         if userDefaultsManager.doesKeyExist(theKey: "dictionnaireFrancaisAnglais") && userDefaultsManager.doesKeyExist(theKey: "dictionnaireAnglaisFrancais")
         {
             dictionnaireFrancaisAnglais =  userDefaultsManager.getValue(theKey: "dictionnaireFrancaisAnglais") as! [String: String]
