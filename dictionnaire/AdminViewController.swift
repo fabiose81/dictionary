@@ -80,13 +80,15 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = UITableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:nil)
+        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         
-        //let keyFrancais = Array(dictionnaireFrancaisAnglais.keys)[indexPath.row]
+        if let label1 =  cell.viewWithTag(100) as! UILabel! {
+            label1.text = "Français: \(dictionnaireFrancaisAnglaisSorted[indexPath.row].key)"
+        }
         
-        //cell.textLabel!.text = "\(keyFrancais) - \(dictionnaireFrancaisAnglais[keyFrancais]!)"
-        
-        cell.textLabel!.text = "\(dictionnaireFrancaisAnglaisSorted[indexPath.row].key) = \(dictionnaireFrancaisAnglaisSorted[indexPath.row].value)"
+        if let label2 =  cell.viewWithTag(200) as! UILabel! {
+            label2.text = "Anglais: \(dictionnaireFrancaisAnglaisSorted[indexPath.row].value)"
+        }
         
         return cell
     }
@@ -104,12 +106,14 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
             dictionnaireFrancaisAnglais.removeValue(forKey:keyFrancais)
             dictionnaireAnglaisFrancais.removeValue(forKey: keyAnglais!)
             
+            dictionnaireFrancaisAnglaisSorted.remove(at: indexPath.row)
+            
             userDefaultsManager.setKey(theValue: dictionnaireFrancaisAnglais as AnyObject, key: "dictionnaireFrancaisAnglais")
             userDefaultsManager.setKey(theValue: dictionnaireAnglaisFrancais as AnyObject, key: "dictionnaireAnglaisFrancais")
             
             userDefaultsManager.setKey(theValue: true as AnyObject, key: "misAJour")
             
-            tableViewMotAjoute.reloadData()
+            tableViewMotAjoute.deleteRows(at: [indexPath], with: .automatic)
         }
     }
     

@@ -53,6 +53,8 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
         viewTop.layer.borderColor = UIColor(rgb: 0x366295).cgColor
         viewTop.layer.borderWidth = 5
         
+        //segControl.subviews[0].tintColor = UIColor(rgb: 0xED2024)
+                
         segControl.setTitle("Français", forSegmentAt: 0)
         segControl.setTitle("Anglais", forSegmentAt: 1)
 
@@ -109,15 +111,20 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = UITableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:nil)
+        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        
         
         if segControlSelected == 0
         {
-            cell.textLabel!.text = dictionnaireFrancaisAnglaisSorted[indexPath.section].value[indexPath.row]
+            if let label =  cell.viewWithTag(100) as! UILabel! {
+                label.text = dictionnaireFrancaisAnglaisSorted[indexPath.section].value[indexPath.row]
+            }
         }
         else
         {
-           cell.textLabel!.text = dictionnaireAnglaisFrancaisSorted[indexPath.section].value[indexPath.row]
+            if let label =  cell.viewWithTag(100) as! UILabel! {
+                label.text = dictionnaireAnglaisFrancaisSorted[indexPath.section].value[indexPath.row]
+            }
         }
         
         return cell
