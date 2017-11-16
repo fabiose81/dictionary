@@ -152,15 +152,6 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
         return dictionnaireAnglaisFrancaisSorted.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if segControlSelected == 0
-        {
-            return dictionnaireFrancaisAnglaisSorted[section].key
-        }
-        
-        return dictionnaireAnglaisFrancaisSorted[section].key
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 30))
