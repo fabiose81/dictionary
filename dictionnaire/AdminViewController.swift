@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  dictionnaire
 //
-//  Created by eleves on 2017-11-08.
-//  Copyright © 2017 eleves. All rights reserved.
+//  Created by Fabio Estrela on 2017-11-08.
+//  Copyright © 2017 Fabio Estrela. All rights reserved.
 //
 
 import UIKit
