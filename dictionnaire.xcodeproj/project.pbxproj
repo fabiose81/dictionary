@@ -18,6 +18,8 @@
 		9BE895071FBDCF96005071B5 /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE895031FBDCF96005071B5 /* cloud.png */; };
 		9BE895081FBDCF96005071B5 /* logo-launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE895041FBDCF96005071B5 /* logo-launch.png */; };
 		9BE895091FBDCF96005071B5 /* logo-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE895051FBDCF96005071B5 /* logo-top.png */; };
+		9BE8950B1FBDD12E005071B5 /* icon-book.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE8950A1FBDD12E005071B5 /* icon-book.png */; };
+		9BE8950D1FBDD18A005071B5 /* icon-pen.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE8950C1FBDD18A005071B5 /* icon-pen.png */; };
 		9BEB9F741FB344AE007ACB75 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEB9F731FB344AE007ACB75 /* UserDefaultsManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		9BE895031FBDCF96005071B5 /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cloud.png; path = dictionnaire/images/cloud.png; sourceTree = SOURCE_ROOT; };
 		9BE895041FBDCF96005071B5 /* logo-launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo-launch.png"; path = "dictionnaire/images/logo-launch.png"; sourceTree = SOURCE_ROOT; };
 		9BE895051FBDCF96005071B5 /* logo-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo-top.png"; path = "dictionnaire/images/logo-top.png"; sourceTree = SOURCE_ROOT; };
+		9BE8950A1FBDD12E005071B5 /* icon-book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-book.png"; path = "dictionnaire/images/icon-book.png"; sourceTree = SOURCE_ROOT; };
+		9BE8950C1FBDD18A005071B5 /* icon-pen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-pen.png"; path = "dictionnaire/images/icon-pen.png"; sourceTree = SOURCE_ROOT; };
 		9BEB9F731FB344AE007ACB75 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +89,8 @@
 		9BE895011FBDCF4C005071B5 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9BE8950C1FBDD18A005071B5 /* icon-pen.png */,
+				9BE8950A1FBDD12E005071B5 /* icon-book.png */,
 				9BE895021FBDCF96005071B5 /* admin.png */,
 				9BE895031FBDCF96005071B5 /* cloud.png */,
 				9BE895041FBDCF96005071B5 /* logo-launch.png */,
@@ -155,6 +161,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B936F491FAB48B900F3108D /* LaunchScreen.storyboard in Resources */,
+				9BE8950B1FBDD12E005071B5 /* icon-book.png in Resources */,
+				9BE8950D1FBDD18A005071B5 /* icon-pen.png in Resources */,
 				9BE895071FBDCF96005071B5 /* cloud.png in Resources */,
 				9BE895081FBDCF96005071B5 /* logo-launch.png in Resources */,
 				9B936F461FAB48B900F3108D /* Assets.xcassets in Resources */,

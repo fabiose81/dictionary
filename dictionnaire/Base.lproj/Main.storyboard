@@ -14,7 +14,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Dict-->
+        <!--Dictionnaire View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="DictionnaireViewController" customModule="dictionnaire" customModuleProvider="target" sceneMemberID="viewController">
@@ -66,14 +66,14 @@
                                 <rect key="frame" x="5" y="20" width="365" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imageView:Ueo-Ge-l5r:image" translatesAutoresizingMaskIntoConstraints="NO" id="Ueo-Ge-l5r">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-top.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ueo-Ge-l5r">
                                         <rect key="frame" x="10" y="8" width="272" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbM-2D-5Sg">
                                         <rect key="frame" x="313" y="21" width="44" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="button:LbM-2D-5Sg:backgroundImage"/>
+                                        <state key="normal" backgroundImage="cloud.png"/>
                                         <connections>
                                             <action selector="actionMisAJour:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aZ8-h6-WRa"/>
                                         </connections>
@@ -95,7 +95,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Dict" image="rsz_icons8-book-50.png" id="61b-Fx-qmk"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon-pen.png" id="61b-Fx-qmk"/>
                     <navigationItem key="navigationItem" id="hcu-sx-cTW"/>
                     <connections>
                         <outlet property="labelResultat" destination="kAd-ry-uhe" id="iDA-aw-Ji6"/>
@@ -108,7 +108,7 @@
             </objects>
             <point key="canvasLocation" x="-1031.2" y="90.404797601199405"/>
         </scene>
-        <!--Admin-->
+        <!--Admin View Controller-->
         <scene sceneID="faI-bf-PoT">
             <objects>
                 <viewController id="32k-XN-goB" customClass="AdminViewController" customModule="dictionnaire" customModuleProvider="target" sceneMemberID="viewController">
@@ -160,7 +160,7 @@
                                 <rect key="frame" x="5" y="20" width="365" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imageView:Ueo-Ge-l5r:image" translatesAutoresizingMaskIntoConstraints="NO" id="6iq-7L-qwr">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-top.png" translatesAutoresizingMaskIntoConstraints="NO" id="6iq-7L-qwr">
                                         <rect key="frame" x="10" y="10" width="272" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -201,7 +201,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Admin" image="rsz_a.png" id="kye-OD-ivu"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon-book.png" id="kye-OD-ivu"/>
                     <connections>
                         <outlet property="tableViewMotAjoute" destination="jir-bC-1k3" id="hMQ-3e-GNi"/>
                         <outlet property="textFieldMotAnglais" destination="6n1-X0-WA9" id="ps8-WY-coS"/>
@@ -234,37 +234,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="button:LbM-2D-5Sg:backgroundImage" width="165" height="166">
-            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBMU
-GR4fJSYsLzU4VSRudWxs1QkKCwwNDg8QERJWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBz
-V05TQ29sb3KAAoAMEiTAAACAA4AKWnsxNjUsIDE2Nn3SFQoWGFpOUy5vYmplY3RzoReABIAJ0hUKGhii
-GxyABYAGgAkQBdMgCiEiIyRXTlMuYmFzZVtOUy5yZWxhdGl2ZYAAgAiAB18Qc2ZpbGU6Ly8vQXBwbGlj
-YXRpb25zL1hjb2RlLmFwcC9Db250ZW50cy9QbHVnSW5zL0lERUludGVyZmFjZUJ1aWxkZXJLaXQuZnJh
-bWV3b3JrL1Jlc291cmNlcy9JQk1pc3NpbmdJbWFnZUdseXBoLnRpZmbSJygpKlokY2xhc3NuYW1lWCRj
-bGFzc2VzVU5TVVJMoikrWE5TT2JqZWN00icoLS5XTlNBcnJheaItK9MwMQoyMzRXTlNXaGl0ZVxOU0Nv
-bG9yU3BhY2VEMCAwABADgAvSJyg2N1dOU0NvbG9yojYr0icoOTpXTlNJbWFnZaI5K18QD05TS2V5ZWRB
-cmNoaXZlctE9PlRyb290gAEACAARABoAIwAtADIANwBFAEsAVgBdAGQAcQB4AIAAggCEAIkAiwCNAJgA
-nQCoAKoArACuALMAtgC4ALoAvAC+AMUAzQDZANsA3QDfAVUBWgFlAW4BdAF3AYABhQGNAZABlwGfAawB
-sQGzAbUBugHCAcUBygHSAdUB5wHqAe8AAAAAAAACAQAAAAAAAAA/AAAAAAAAAAAAAAAAAAAB8Q
-</mutableData>
-        </image>
-        <image name="imageView:Ueo-Ge-l5r:image" width="718" height="187">
-            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBMU
-GR4fJSYsLzU4VSRudWxs1QkKCwwNDg8QERJWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBz
-V05TQ29sb3KAAoAMEiTAAACAA4AKWns3MTgsIDE4N33SFQoWGFpOUy5vYmplY3RzoReABIAJ0hUKGhii
-GxyABYAGgAkQBdMgCiEiIyRXTlMuYmFzZVtOUy5yZWxhdGl2ZYAAgAiAB18Qc2ZpbGU6Ly8vQXBwbGlj
-YXRpb25zL1hjb2RlLmFwcC9Db250ZW50cy9QbHVnSW5zL0lERUludGVyZmFjZUJ1aWxkZXJLaXQuZnJh
-bWV3b3JrL1Jlc291cmNlcy9JQk1pc3NpbmdJbWFnZUdseXBoLnRpZmbSJygpKlokY2xhc3NuYW1lWCRj
-bGFzc2VzVU5TVVJMoikrWE5TT2JqZWN00icoLS5XTlNBcnJheaItK9MwMQoyMzRXTlNXaGl0ZVxOU0Nv
-bG9yU3BhY2VEMCAwABADgAvSJyg2N1dOU0NvbG9yojYr0icoOTpXTlNJbWFnZaI5K18QD05TS2V5ZWRB
-cmNoaXZlctE9PlRyb290gAEACAARABoAIwAtADIANwBFAEsAVgBdAGQAcQB4AIAAggCEAIkAiwCNAJgA
-nQCoAKoArACuALMAtgC4ALoAvAC+AMUAzQDZANsA3QDfAVUBWgFlAW4BdAF3AYABhQGNAZABlwGfAawB
-sQGzAbUBugHCAcUBygHSAdUB5wHqAe8AAAAAAAACAQAAAAAAAAA/AAAAAAAAAAAAAAAAAAAB8Q
-</mutableData>
-        </image>
-        <image name="rsz_a.png" width="25" height="25"/>
-        <image name="rsz_icons8-book-50.png" width="25" height="25"/>
+        <image name="cloud.png" width="165" height="166"/>
+        <image name="icon-book.png" width="25" height="25"/>
+        <image name="icon-pen.png" width="25" height="25"/>
+        <image name="logo-top.png" width="718" height="187"/>
     </resources>
 </document>
