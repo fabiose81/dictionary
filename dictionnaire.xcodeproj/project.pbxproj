@@ -13,11 +13,7 @@
 		9B936F441FAB48B900F3108D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B936F421FAB48B900F3108D /* Main.storyboard */; };
 		9B936F461FAB48B900F3108D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B936F451FAB48B900F3108D /* Assets.xcassets */; };
 		9B936F491FAB48B900F3108D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B936F471FAB48B900F3108D /* LaunchScreen.storyboard */; };
-		9BE894F81FBCA29B005071B5 /* logo-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE894F71FBCA29B005071B5 /* logo-top.png */; };
 		9BE894FA1FBCA93B005071B5 /* UIColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE894F91FBCA93B005071B5 /* UIColorUtil.swift */; };
-		9BE894FC1FBCAABF005071B5 /* logo-launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE894FB1FBCAABF005071B5 /* logo-launch.png */; };
-		9BE894FE1FBCBED0005071B5 /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE894FD1FBCBED0005071B5 /* cloud.png */; };
-		9BE895001FBCC1D8005071B5 /* admin.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BE894FF1FBCC1D7005071B5 /* admin.png */; };
 		9BEB9F741FB344AE007ACB75 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEB9F731FB344AE007ACB75 /* UserDefaultsManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -154,12 +150,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BE894F81FBCA29B005071B5 /* logo-top.png in Resources */,
 				9B936F491FAB48B900F3108D /* LaunchScreen.storyboard in Resources */,
 				9B936F461FAB48B900F3108D /* Assets.xcassets in Resources */,
-				9BE895001FBCC1D8005071B5 /* admin.png in Resources */,
-				9BE894FE1FBCBED0005071B5 /* cloud.png in Resources */,
-				9BE894FC1FBCAABF005071B5 /* logo-launch.png in Resources */,
 				9B936F441FAB48B900F3108D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

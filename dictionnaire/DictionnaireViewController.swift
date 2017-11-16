@@ -16,7 +16,7 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var segControl: UISegmentedControl!
     
-    @IBOutlet weak var tableViewHistoriqueRecherche: UITableView!
+    @IBOutlet weak var tableViewDictionnaire: UITableView!
     
     var motsFrancais = [String: [String]]()
     var motsAnglais = [String: [String]]()
@@ -38,20 +38,23 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
             {
                 loadDictionnaire()
                 userDefaultsManager.setKey(theValue: false as Bool as AnyObject, key: "misAJour")
-                tableViewHistoriqueRecherche.reloadData()
+                tableViewDictionnaire.reloadData()
             }
         }
     }
     
     @IBAction func actionSegControl(_ sender: UISegmentedControl) {
         segControlSelected = sender.selectedSegmentIndex
-        tableViewHistoriqueRecherche.reloadData()
+        tableViewDictionnaire.reloadData()
     }
     
     override func viewDidLoad() {
         
         viewTop.layer.borderColor = UIColor(rgb: 0x366295).cgColor
-        viewTop.layer.borderWidth = 5
+        viewTop.layer.borderWidth = 2
+        
+        tableViewDictionnaire.layer.borderColor = UIColor(rgb: 0x366295).cgColor
+        tableViewDictionnaire.layer.borderWidth = 2
         
         //segControl.subviews[0].tintColor = UIColor(rgb: 0xED2024)
                 
@@ -156,6 +159,29 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         return dictionnaireAnglaisFrancaisSorted[section].key
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
+    {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 30))
+       
+        headerView.backgroundColor = UIColor(rgb: 0x366295)
+        
+        let label = UILabel(frame: CGRect(x: 5, y: 0, width: tableView.bounds.size.width, height: 30))
+        label.textColor = UIColor.white
+        
+        if segControlSelected == 0
+        {
+             label.text = dictionnaireFrancaisAnglaisSorted[section].key
+        }
+        else
+        {
+           label.text = dictionnaireAnglaisFrancaisSorted[section].key
+        }
+        
+        headerView.addSubview(label)
+       
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

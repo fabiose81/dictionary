@@ -27,7 +27,10 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
    override func viewDidLoad() {
     
         viewTop.layer.borderColor = UIColor(rgb: 0x366295).cgColor
-        viewTop.layer.borderWidth = 5
+        viewTop.layer.borderWidth = 2
+    
+        tableViewMotAjoute.layer.borderColor = UIColor(rgb: 0x366295).cgColor
+        tableViewMotAjoute.layer.borderWidth = 2
     
         if userDefaultsManager.doesKeyExist(theKey: "dictionnaireFrancaisAnglais") && userDefaultsManager.doesKeyExist(theKey: "dictionnaireAnglaisFrancais")
         {
@@ -83,11 +86,11 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         
         if let label1 =  cell.viewWithTag(100) as! UILabel! {
-            label1.text = "Français: \(dictionnaireFrancaisAnglaisSorted[indexPath.row].key)"
+            label1.text = dictionnaireFrancaisAnglaisSorted[indexPath.row].key
         }
         
         if let label2 =  cell.viewWithTag(200) as! UILabel! {
-            label2.text = "Anglais: \(dictionnaireFrancaisAnglaisSorted[indexPath.row].value)"
+            label2.text = dictionnaireFrancaisAnglaisSorted[indexPath.row].value
         }
         
         return cell
