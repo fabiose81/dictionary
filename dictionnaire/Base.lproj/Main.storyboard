@@ -95,7 +95,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="icon-pen.png" id="61b-Fx-qmk"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon-book.png" id="61b-Fx-qmk"/>
                     <navigationItem key="navigationItem" id="hcu-sx-cTW"/>
                     <connections>
                         <outlet property="labelResultat" destination="kAd-ry-uhe" id="iDA-aw-Ji6"/>
@@ -201,7 +201,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="icon-book.png" id="kye-OD-ivu"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon-pen.png" id="kye-OD-ivu"/>
                     <connections>
                         <outlet property="tableViewMotAjoute" destination="jir-bC-1k3" id="hMQ-3e-GNi"/>
                         <outlet property="textFieldMotAnglais" destination="6n1-X0-WA9" id="ps8-WY-coS"/>
