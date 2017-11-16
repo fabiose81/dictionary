@@ -30,19 +30,9 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
     var userDefaultsManager = UserDefaultsManager()
     
     var segControlSelected = 0
-
-    @IBAction func actionMisAJour(_ sender: UIButton) {
-        if userDefaultsManager.doesKeyExist(theKey: "misAJour") {
-            let misAJour =  userDefaultsManager.getValue(theKey: "misAJour") as! Bool
-            if misAJour
-            {
-                loadDictionnaire()
-                userDefaultsManager.setKey(theValue: false as Bool as AnyObject, key: "misAJour")
-                tableViewDictionnaire.reloadData()
-            }
-        }
-    }
     
+    var refreshControl: UIRefreshControl!
+   
     @IBAction func actionSegControl(_ sender: UISegmentedControl) {
         segControlSelected = sender.selectedSegmentIndex
         tableViewDictionnaire.reloadData()
@@ -56,8 +46,12 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
         tableViewDictionnaire.layer.borderColor = UIColor(rgb: 0x366295).cgColor
         tableViewDictionnaire.layer.borderWidth = 2
         
-        //segControl.subviews[0].tintColor = UIColor(rgb: 0xED2024)
-                
+        refreshControl = UIRefreshControl()
+        
+        refreshControl.addTarget(self, action: #selector(DictionnaireViewController.refreshTableView), for: UIControlEvents.valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Tirer pour rafraîchir")
+        tableViewDictionnaire.addSubview(refreshControl)
+        
         segControl.setTitle("Français", forSegmentAt: 0)
         segControl.setTitle("Anglais", forSegmentAt: 1)
 
@@ -110,6 +104,19 @@ class DictionnaireViewController: UIViewController, UITableViewDelegate, UITable
             
             dictionnaireFrancaisAnglaisSorted = motsFrancais.sorted{ $0.key < $1.key }
             dictionnaireAnglaisFrancaisSorted = motsAnglais.sorted{ $0.key < $1.key }
+        }
+    }
+    
+    func refreshTableView(){
+        if userDefaultsManager.doesKeyExist(theKey: "misAJour") {
+            let misAJour =  userDefaultsManager.getValue(theKey: "misAJour") as! Bool
+            if misAJour
+            {
+                loadDictionnaire()
+                userDefaultsManager.setKey(theValue: false as Bool as AnyObject, key: "misAJour")
+                tableViewDictionnaire.reloadData()
+            }
+            refreshControl.endRefreshing()
         }
     }
     

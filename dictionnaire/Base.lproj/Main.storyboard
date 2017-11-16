@@ -14,7 +14,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Dictionnaire View Controller-->
+        <!--Dict-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="DictionnaireViewController" customModule="dictionnaire" customModuleProvider="target" sceneMemberID="viewController">
@@ -67,17 +67,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-top.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ueo-Ge-l5r">
-                                        <rect key="frame" x="10" y="8" width="272" height="70"/>
+                                        <rect key="frame" x="8" y="8" width="350" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbM-2D-5Sg">
-                                        <rect key="frame" x="313" y="21" width="44" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="cloud.png"/>
-                                        <connections>
-                                            <action selector="actionMisAJour:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aZ8-h6-WRa"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cgc-mj-MEg">
@@ -95,7 +87,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="icon-book.png" id="61b-Fx-qmk"/>
+                    <tabBarItem key="tabBarItem" title="Dict" image="icon-book.png" id="61b-Fx-qmk"/>
                     <navigationItem key="navigationItem" id="hcu-sx-cTW"/>
                     <connections>
                         <outlet property="labelResultat" destination="kAd-ry-uhe" id="iDA-aw-Ji6"/>
@@ -108,7 +100,7 @@
             </objects>
             <point key="canvasLocation" x="-1031.2" y="90.404797601199405"/>
         </scene>
-        <!--Admin View Controller-->
+        <!--Admin-->
         <scene sceneID="faI-bf-PoT">
             <objects>
                 <viewController id="32k-XN-goB" customClass="AdminViewController" customModule="dictionnaire" customModuleProvider="target" sceneMemberID="viewController">
@@ -161,7 +153,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-top.png" translatesAutoresizingMaskIntoConstraints="NO" id="6iq-7L-qwr">
-                                        <rect key="frame" x="10" y="10" width="272" height="70"/>
+                                        <rect key="frame" x="8" y="8" width="350" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
@@ -201,7 +193,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="icon-pen.png" id="kye-OD-ivu"/>
+                    <tabBarItem key="tabBarItem" title="Admin" image="icon-pen.png" id="kye-OD-ivu"/>
                     <connections>
                         <outlet property="tableViewMotAjoute" destination="jir-bC-1k3" id="hMQ-3e-GNi"/>
                         <outlet property="textFieldMotAnglais" destination="6n1-X0-WA9" id="ps8-WY-coS"/>
@@ -234,9 +226,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cloud.png" width="165" height="166"/>
         <image name="icon-book.png" width="25" height="25"/>
         <image name="icon-pen.png" width="25" height="25"/>
-        <image name="logo-top.png" width="718" height="187"/>
+        <image name="logo-top.png" width="905" height="163"/>
     </resources>
 </document>

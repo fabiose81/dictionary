@@ -29,6 +29,12 @@ class AdminViewController: UIViewController, UITableViewDelegate, UITableViewDat
         viewTop.layer.borderColor = UIColor(rgb: 0x366295).cgColor
         viewTop.layer.borderWidth = 2
     
+        textFieldMotFrancais.layer.borderColor = UIColor(rgb: 0x366295).cgColor
+        textFieldMotFrancais.layer.borderWidth = 1
+    
+        textFieldMotAnglais.layer.borderColor = UIColor(rgb: 0x366295).cgColor
+        textFieldMotAnglais.layer.borderWidth = 1
+    
         tableViewMotAjoute.layer.borderColor = UIColor(rgb: 0x366295).cgColor
         tableViewMotAjoute.layer.borderWidth = 2
     
